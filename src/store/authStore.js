@@ -1,3 +1,4 @@
+// src/store/authStore.js
 import { create } from "zustand";
 import { sendOtp, verifyOtp, getMe } from "../services/api";
 
@@ -12,7 +13,8 @@ const useAuthStore = create((set, get) => ({
   sendOtp: async (payload) => {
     set({ loading: true, error: null });
     try {
-      await sendOtp(payload);
+      const res = await sendOtp(payload);
+      return res.data; // ✅ IMPORTANT: return OTP response
     } catch (e) {
       set({ error: e?.response?.data || e?.message || "Failed to send OTP" });
       throw e;
