@@ -27,7 +27,7 @@ import HowItWorks from "./sections/HowItWorks";
 import Testimonials from "./sections/Testimonials";
 import CTA from "./sections/CTA";
 
-export default function Landing() {
+export default function LandingPage({ onLogin }) {
   const [loginOpen, setLoginOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
 
@@ -109,45 +109,9 @@ export default function Landing() {
         <div className="absolute -bottom-30 -left-30 h-90 w-90 rounded-full bg-indigo-200/30 blur-3xl" />
       </div>
 
-      <Navbar
-        onLogin={() => setLoginOpen(true)}
-        onGetStarted={() => setActiveStep(0)}
-      />
+      <Navbar onLogin={onLogin} onGetStarted={() => setActiveStep(0)} />
 
-      {/* LOGIN MODAL kept in Landing as app-level UI */}
-      <Modal
-        open={loginOpen}
-        onClose={() => setLoginOpen(false)}
-        title="Login to AI Counsellor"
-        footer={
-          <>
-            <Button variant="secondary" onClick={() => setLoginOpen(false)}>
-              Cancel
-            </Button>
-            <Button withArrow onClick={() => setLoginOpen(false)}>
-              Login
-            </Button>
-          </>
-        }
-      >
-        <div className="grid gap-3">
-          <Input label="Email" placeholder="Enter your email" leftIcon={<FiMail />} />
-          <Input
-            label="Password"
-            type="password"
-            placeholder="Enter your password"
-            leftIcon={<FiLock />}
-          />
-          <div className="flex items-center justify-between pt-1">
-            <button className="text-xs font-semibold text-slate-600 hover:text-slate-900">
-              Forgot password?
-            </button>
-            <button className="text-xs font-semibold text-orange-600 hover:text-orange-700">
-              Sign up
-            </button>
-          </div>
-        </div>
-      </Modal>
+      
 
       <Hero
         logo={logo}
