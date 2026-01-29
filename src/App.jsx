@@ -1,22 +1,29 @@
 // src/App.jsx
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import LandingPage from "./pages/landing/Landing.jsx";
+import Onboarding from "./pages/onboarding/Onboarding.jsx";
+
+
 import AuthModal from "./pages/auth/AuthModal.jsx";
-import useAuthStore from "./store/authStore";
-import "./App.css";
 
 export default function App() {
   const [authOpen, setAuthOpen] = useState(false);
-  const { token, fetchMe } = useAuthStore();
-
-  useEffect(() => {
-    if (token) fetchMe().catch(() => {});
-  }, [token, fetchMe]);
 
   return (
     <>
-      <LandingPage onLogin={() => setAuthOpen(true)} />
-      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+      <Routes>
+        <Route path="/" element={<LandingPage onLogin={() => setAuthOpen(true)} />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        {/* later: dashboard route */}
+      </Routes>
+
+      <AuthModal
+        open={authOpen}
+        onClose={() => setAuthOpen(false)}
+        onLoginSuccess={() => setAuthOpen(false)}
+      />
     </>
   );
 }

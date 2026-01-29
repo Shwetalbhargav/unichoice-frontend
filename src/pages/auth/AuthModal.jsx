@@ -1,11 +1,19 @@
 // src/features/auth/AuthModal.jsx
 import { useState } from "react";
 import { Modal } from "../../components/ui";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
-export default function AuthModal({ open, onClose }) {
+export default function AuthModal({ open, onClose, onLoginSuccess }) {
   const [mode, setMode] = useState("login"); // login | register
+  const navigate = useNavigate();
+
+  const handleLoginSuccess = () => {
+    onLoginSuccess?.();     // close modal / any parent side-effects
+    navigate("/onboarding", { replace: true }); // ✅ redirect
+  };
+
 
   return (
     <Modal
@@ -26,7 +34,7 @@ export default function AuthModal({ open, onClose }) {
     >
       <div className="mt-6">
         {mode === "login" ? (
-          <LoginForm onSwitch={() => setMode("register")} onSuccess={onClose} />
+          <LoginForm onSwitch={() => setMode("register")} onSuccess={handleLoginSuccess} />
         ) : (
           <RegisterForm onSwitch={() => setMode("login")} onSuccess={onClose} />
         )}
