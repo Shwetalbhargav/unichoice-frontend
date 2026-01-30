@@ -7,3 +7,4 @@ export { default as useTasksStore } from "./tasksStore";
 export { default as useCounsellorStore } from "./counsellorStore";
 export { default as useMiscStore } from "./miscStore";
 export { default as useStageStore, STAGES } from "./stageStore";
+export { default as useLockStore } from "./lockStore";
