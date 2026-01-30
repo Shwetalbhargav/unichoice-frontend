@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../ui/Button";
 import { FiLogIn } from "react-icons/fi";
+import logo from "../../assets/images/logo.jpg";
 
 export default function Navbar({ onLogin, onGetStarted }) {
   return (
@@ -8,7 +9,7 @@ export default function Navbar({ onLogin, onGetStarted }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
           <img
-            src="/images/logo.jpg"
+            src={logo}
             alt="AI Counsellor"
             className="h-9 w-9 rounded-xl object-cover"
           />

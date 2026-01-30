@@ -1,5 +1,6 @@
 import React from "react";
 import { FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
+import logo from "../../assets/images/logo.jpg";
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <img
-              src="/images/logo.jpg"
+              src={logo}
               alt="AI Counsellor"
               className="h-9 w-9 rounded-xl object-cover"
             />
